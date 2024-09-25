@@ -52,4 +52,8 @@ public class Pixel {
         this.button.setBackground(newColor);
     }
 
+    public void repaint() {
+        this.button.repaint();
+    }
+
 }
