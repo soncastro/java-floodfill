@@ -2,6 +2,7 @@ package com.songomes.floodfillwithjava.controller;
 
 import com.songomes.floodfillwithjava.ui.Pixel;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.Map;
 
@@ -88,7 +89,13 @@ public class ScreenControllerImpl implements ScreenController {
     }
 
     private void executeFloodFill(Pixel pixel, Color newColor) {
-        throw new UnsupportedOperationException();
+
+        // TODO: Delete the lines below after implementing this method
+        JPanel panel = new JPanel();
+        JLabel label = new JLabel("Flood Fill has not been implemented.");
+        panel.add(label);
+        String[] options = new String[]{"OK"};
+        JOptionPane.showOptionDialog(null, panel, "Flood Fill Not Implemented", JOptionPane.NO_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
     }
 
 }
