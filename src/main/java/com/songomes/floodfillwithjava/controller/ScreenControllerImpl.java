@@ -82,7 +82,9 @@ public class ScreenControllerImpl implements ScreenController {
     @Override
     public void performFloodFill(Pixel pixel, Color newColor) {
         this.validate();
-        this.executeFloodFill(pixel, newColor);
+        new Thread(() -> {
+            this.executeFloodFill(pixel, newColor);
+        }).start();
     }
 
     private void executeFloodFill(Pixel pixel, Color newColor) {
