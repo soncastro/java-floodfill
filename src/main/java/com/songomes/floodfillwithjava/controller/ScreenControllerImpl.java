@@ -4,7 +4,10 @@ import com.songomes.floodfillwithjava.ui.Pixel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Stack;
 
 public class ScreenControllerImpl implements ScreenController {
 
@@ -83,9 +86,7 @@ public class ScreenControllerImpl implements ScreenController {
     @Override
     public void performFloodFill(Pixel pixel, Color newColor) {
         this.validate();
-        new Thread(() -> {
-            this.executeFloodFill(pixel, newColor);
-        }).start();
+        this.executeFloodFill(pixel, newColor);
     }
 
     private void executeFloodFill(Pixel pixel, Color newColor) {
@@ -96,6 +97,14 @@ public class ScreenControllerImpl implements ScreenController {
         panel.add(label);
         String[] options = new String[]{"OK"};
         JOptionPane.showOptionDialog(null, panel, "Flood Fill Not Implemented", JOptionPane.NO_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+    }
+
+    private boolean isValid(Pixel pixel, Color newColor) {
+        if ((pixel != null) && (pixel.x < this.width) && (pixel.y < this.height) //
+                && !pixel.getColor().equals(newColor)) {
+            return true;
+        }
+        return false;
     }
 
 }
