@@ -1,7 +1,5 @@
 package com.songomes.floodfillwithjava.ui;
 
-import com.songomes.floodfillwithjava.controller.ScreenController;
-
 import javax.swing.*;
 
 public class ButtonFloodFill extends JButton {
@@ -10,19 +8,19 @@ public class ButtonFloodFill extends JButton {
     private static final String BUTTON_TEXT_ENABLED = "Flood Fill = enabled";
     private static final String BUTTON_TEXT_OK = "OK";
 
-    private final ScreenController screenController;
+    private final Screen screen;
 
-    public ButtonFloodFill(ScreenController screenController) {
-        this.screenController = screenController;
+    public ButtonFloodFill(Screen screen) {
+        this.screen = screen;
         this.updateText();
     }
 
     public void toggleFloodFillEnabled() {
 
-        this.screenController.toggleFloodFillEnabled();
+        this.screen.toggleFloodFillEnabled();
         this.updateText();
 
-        if (this.screenController.isFloodFillEnabled()) {
+        if (this.screen.isFloodFillEnabled()) {
 
             String title = BUTTON_TEXT_ENABLED;
             String msg = "Now, when a pixel is clicked, it will execute the Flood Fill algorithm.";
@@ -48,7 +46,7 @@ public class ButtonFloodFill extends JButton {
     }
 
     private void updateText() {
-        if (this.screenController.isFloodFillEnabled()) {
+        if (this.screen.isFloodFillEnabled()) {
             super.setText(BUTTON_TEXT_ENABLED);
         } else {
             super.setText(BUTTON_TEXT_DISABLED);

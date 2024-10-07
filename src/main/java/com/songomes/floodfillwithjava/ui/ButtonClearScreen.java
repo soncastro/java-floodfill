@@ -1,20 +1,18 @@
 package com.songomes.floodfillwithjava.ui;
 
-import com.songomes.floodfillwithjava.controller.ScreenController;
-
 import javax.swing.*;
 
 public class ButtonClearScreen extends JButton {
 
-    private final ScreenController screenController;
+    private final Screen screen;
 
-    public ButtonClearScreen(String text, ScreenController screenController) {
+    public ButtonClearScreen(String text, Screen screen) {
         super(text);
-        this.screenController = screenController;
+        this.screen = screen;
     }
 
     public void clear() {
-        this.screenController.clear();
+        this.screen.clear();
     }
 
 }

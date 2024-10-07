@@ -1,12 +1,10 @@
-package com.songomes.floodfillwithjava.controller;
-
-import com.songomes.floodfillwithjava.ui.Pixel;
+package com.songomes.floodfillwithjava.ui;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Map;
 
-public class ScreenControllerImpl implements ScreenController {
+public class Screen {
 
     private boolean floodFillEnabled;
 
@@ -16,22 +14,19 @@ public class ScreenControllerImpl implements ScreenController {
 
     private Map<Point, Pixel> allPixels;
 
-    public ScreenControllerImpl(int width, int height) {
+    public Screen(int width, int height) {
         this.width = width;
         this.height = height;
     }
 
-    @Override
     public boolean isFloodFillEnabled() {
         return floodFillEnabled;
     }
 
-    @Override
     public void toggleFloodFillEnabled() {
         this.floodFillEnabled = !this.floodFillEnabled;
     }
 
-    @Override
     public void drawSquare() {
         this.validate();
 
@@ -58,13 +53,11 @@ public class ScreenControllerImpl implements ScreenController {
         }
     }
 
-    @Override
     public void setAllPixels(Map<Point, Pixel> allPixels) {
         if (allPixels == null || allPixels.isEmpty()) throw new IllegalArgumentException();
         this.allPixels = allPixels;
     }
 
-    @Override
     public void clear() {
         this.validate();
         for (int x = 0; x < this.width; x++) {
@@ -80,7 +73,6 @@ public class ScreenControllerImpl implements ScreenController {
         }
     }
 
-    @Override
     public void performFloodFill(Pixel pixel, Color newColor) {
         this.validate();
         this.executeFloodFill(pixel, newColor);

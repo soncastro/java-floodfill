@@ -1,20 +1,18 @@
 package com.songomes.floodfillwithjava.ui;
 
-import com.songomes.floodfillwithjava.controller.ScreenController;
-
 import javax.swing.*;
 
 public class ButtonDrawSquare extends JButton {
 
-    private final ScreenController screenController;
+    private final Screen screen;
 
-    public ButtonDrawSquare(String text, ScreenController screenController) {
+    public ButtonDrawSquare(String text, Screen screen) {
         super(text);
-        this.screenController = screenController;
+        this.screen = screen;
     }
 
     public void draw() {
-        this.screenController.drawSquare();
+        this.screen.drawSquare();
     }
 
 }

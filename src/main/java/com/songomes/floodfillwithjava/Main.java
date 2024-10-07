@@ -1,7 +1,6 @@
 package com.songomes.floodfillwithjava;
 
-import com.songomes.floodfillwithjava.controller.ScreenController;
-import com.songomes.floodfillwithjava.controller.ScreenControllerImpl;
+import com.songomes.floodfillwithjava.ui.Screen;
 import com.songomes.floodfillwithjava.ui.ButtonClearScreen;
 import com.songomes.floodfillwithjava.ui.ButtonDrawSquare;
 import com.songomes.floodfillwithjava.ui.ButtonFloodFill;
@@ -23,7 +22,7 @@ public class Main {
         int width = 40;
         int height = 40;
 
-        ScreenController screenController = new ScreenControllerImpl(width, height);
+        Screen screen = new Screen(width, height);
 
         JFrame frame = new JFrame("Flood Fill Algorithm");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,24 +36,24 @@ public class Main {
         Map<Point, Pixel> todosPixels = new HashMap<Point, Pixel>();
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                Pixel pixel = new Pixel(x, y, screenController);
+                Pixel pixel = new Pixel(x, y, screen);
                 pixel.addActionListener(e -> pixel.performClickPixel(Color.BLACK));
                 panel2.add(pixel.getButton());
                 todosPixels.put(new Point(x, y), pixel);
             }
         }
 
-        screenController.setAllPixels(todosPixels);
+        screen.setAllPixels(todosPixels);
 
-        ButtonFloodFill buttonFloodFill = new ButtonFloodFill(screenController);
+        ButtonFloodFill buttonFloodFill = new ButtonFloodFill(screen);
         buttonFloodFill.setBackground(Color.WHITE);
         buttonFloodFill.addActionListener(e -> buttonFloodFill.toggleFloodFillEnabled());
 
-        ButtonDrawSquare buttonDrawSquare = new ButtonDrawSquare("Draw Square", screenController);
+        ButtonDrawSquare buttonDrawSquare = new ButtonDrawSquare("Draw Square", screen);
         buttonDrawSquare.setBackground(Color.WHITE);
         buttonDrawSquare.addActionListener(e -> buttonDrawSquare.draw());
 
-        ButtonClearScreen buttonClearScreen = new ButtonClearScreen("Clear Screen", screenController);
+        ButtonClearScreen buttonClearScreen = new ButtonClearScreen("Clear Screen", screen);
         buttonClearScreen.setBackground(Color.WHITE);
         buttonClearScreen.addActionListener(e -> buttonClearScreen.clear());
 
