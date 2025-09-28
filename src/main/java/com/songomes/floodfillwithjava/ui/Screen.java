@@ -2,7 +2,10 @@ package com.songomes.floodfillwithjava.ui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Stack;
 
 public class Screen {
 
@@ -80,12 +83,33 @@ public class Screen {
 
     private void executeFloodFill(Pixel pixel, Color newColor) {
 
-        // TODO: Delete the lines below after implementing this method
-        JPanel panel = new JPanel();
-        JLabel label = new JLabel("Flood Fill has not been implemented.");
-        panel.add(label);
-        String[] options = new String[]{"OK"};
-        JOptionPane.showOptionDialog(null, panel, "Flood Fill Not Implemented", JOptionPane.NO_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+        if (!isValid(pixel, newColor)) {
+            return;
+        }
+
+        Stack<Pixel> stack = new Stack<>();
+        stack.push(pixel);
+
+        while (!stack.isEmpty()) {
+
+            Pixel p = stack.pop();
+
+            p.changeColor(newColor);
+
+            List<Point> directions = new ArrayList<Point>();
+            directions.add(new Point(p.x, p.y - 1));
+            directions.add(new Point(p.x + 1, p.y));
+            directions.add(new Point(p.x, p.y + 1));
+            directions.add(new Point(p.x - 1, p.y));
+
+            for (Point d : directions) {
+                Pixel pixelValid = this.allPixels.get(d);
+                if (isValid(pixelValid, newColor)) {
+                    stack.push(pixelValid);
+                }
+            }
+        }
+
     }
 
     private boolean isValid(Pixel pixel, Color newColor) {
